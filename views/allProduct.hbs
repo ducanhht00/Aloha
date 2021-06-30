@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>All products</title>
+    <style>
+        .content-table 
+        {
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.9em;
+            min-width: 400px;
+            border-radius: 5px 5px 0 0;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .content-table thead tr 
+        {
+            background-color: #009879;
+            color: #ffffff;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        .content-table th,
+        .content-table td   
+        {
+            padding: 12px 15px;
+        }
+
+        .content-table tbody tr 
+        {
+            border-bottom: 1px solid #dddddd;
+        }
+
+        .content-table tbody tr:nth-of-type(even) 
+        {
+            background-color: #f3f3f3;  
+        }
+
+        .content-table tbody tr:last-of-type 
+        {
+            border-bottom: 2px solid #009879;
+        }
+
+        .content-table tbody tr.active-row 
+        {
+            font-weight: bold;
+            color: #009879;
+        }
+    </style>
+</head>
+<body>
+    <h2>{{username}}</h2>
+   <form method="POST" action="/search">
+        <p>Search: </p>
+        <input type="text" name="txtName">
+        <input type="submit" value="Search">
+   </form>
+   <table class="table table-hover content-table">
+       <thead>
+           <tr>
+               <th>Name</th>
+               <th>Price</th>
+               <th>Delete</th>
+           </tr>
+       </thead>
+       <tbody>
+           {{#each model}}
+           <tr>
+                <td>{{name}}</td>
+                <td>{{price}}</td>
+                <td><a href="/delete?id={{_id}}" onclick="return confirm('Are you sure')">Delete</a></td>
+            </tr>
+            {{/each}}
+       </tbody>      
+   </table>
+    <a href="/">Go HomePage</a>
+    <br>
+
+    <a href="/insert">Go Insert Page</a>
+    <br>
+    <a href="/view">Load all products</a>
+</body>
+</html>
