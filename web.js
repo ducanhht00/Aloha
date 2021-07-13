@@ -34,7 +34,6 @@ app.get('/view',async (req,res)=>{
     var results= await dbo.collection("SanPham").find({}).toArray();
     res.render('allProduct',{model:results})
 })
-
 app.post('/search', async (req,res)=>{
     const searchText = req.body.txtName;
     var client= await MongoClient.connect(url);
